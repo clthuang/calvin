@@ -74,8 +74,8 @@ Two layers, different portability:
 
 | When | Action |
 |------|--------|
-| Now (pre-v0.1) | H1 — it also creates the dogfood-gate habit PLAN Phase 4 needs |
-| With v0.1 install (PLAN Phase 3) | H2 — script + settings.json registration |
+| ✅ landed 2026-08-27 | H1 — `# Clarity (calvin)` block live in `~/.claude/CLAUDE.md` |
+| ✅ landed 2026-08-27 | H2 — `calvin-remind.sh` live: PostToolUse(Edit\|Write) in settings.json, pipe-tested + live-fire verified |
 | With v0.2 (Codex verified) | H3 |
 | Next pd release | H4 |
 | v0.3 (report mode in CI) | Revisit gates: git pre-commit `calvin report` on spec paths, exit code on blocker-count |

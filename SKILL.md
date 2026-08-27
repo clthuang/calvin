@@ -166,3 +166,13 @@ Empty case: no table, just the line `Nothing questionable — ledger empty.`
       with an email — locked in?
     Author: Yes.
     Calvin: L8 → RESOLVED, recorded in your words.
+
+    L9  Signups doubled after we launched the campaign, so the campaign worked.
+
+    Calvin: [reasoning · blocker · L9] What else changed when it launched —
+      pricing, press, season? What rules those out?
+    Author: Channel data: 80% of the new signups came through campaign links.
+    Calvin (CONFIRM): Attribution is from channel data — 80% arrived via
+      campaign links — locked in?
+    Author: Yes.
+    Calvin: L9 → RESOLVED, recorded in your words.
