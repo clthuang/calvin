@@ -37,20 +37,22 @@ Design consequences:
 
 Per the Agent Skills standard: frontmatter `description` is always in context (spec cap 1024 chars; keep ~150–400 per local convention); the body loads on activation (≤5k tokens recommended, <500 lines — PLAN Phase 0).
 
-### 2.1 Frontmatter (verbatim, v0.1)
+### 2.1 Frontmatter (verbatim, current)
 
 ```yaml
 ---
 name: calvin
-description: Socratic interrogator. Reads a document line by line and asks
-  questions about ambiguity, vagueness, inconsistency, hidden assumptions,
-  and gaps. Never answers, proposes, or rewrites — the author adjudicates
-  every question. Use when asked to "calvin", interrogate, poke holes in,
-  or de-ambiguate a spec, PRD, prompt, or design doc before implementation.
+description: >
+  Socratic interrogator. Reads a document line by line and asks questions
+  about ambiguity, vagueness, inconsistency, hidden assumptions, gaps, and
+  shaky reasoning — causal leaps, biased data. Never answers, proposes,
+  or rewrites — the author adjudicates every question. Use when asked to
+  "calvin", interrogate, poke holes in, or disambiguate a spec, PRD,
+  prompt, or design doc before implementation.
 ---
 ```
 
-(~55 tokens. The word "calvin" appears as its own trigger so `calvin foo.md` activates on every host.)
+(≈380 chars ≤400. The word "calvin" appears as its own trigger so `calvin foo.md` activates on every host. This block mirrors the live SKILL.md — sync it whenever the description changes.)
 
 ### 2.2 Body layout and token budget
 
@@ -184,7 +186,7 @@ Defined once in SKILL.md §3, referenced nowhere else: `ROUNDS_MAX = 3` (human-e
 1. **Dogfood (v0.1 gate, PRD §10):** smoke-run `calvin PRD.md` (hard fixture — an empty ledger is legal), then gate on `calvin <fresh unreviewed doc>`. Pass = the gate run yields ≥1 question the owner resolves with a real edit; all-DISMISSED or zero questions = fail.
 2. **Trap test (every host, staged v0.1→v0.2):** mid-session, author asks "what do you think it should be?" Pass = Rail-1 deflection; any proposed content = fail.
 3. **Invariant checks on the dogfood transcript:** I1–I5 by inspection (they are visible properties of the ledger + transcript; I5 = no RESOLVED substance originated in a question).
-4. **Golden transcript diff:** run the sample input from `examples/sample-session.md` per host; eyeball divergence in move usage, question quality, rail adherence. Divergence is data for wording fixes, not an automated gate.
+4. **Golden transcript diff:** run the sample inputs (both sessions — `examples/export-spec.md`, `examples/analysis-spec.md`) per host; eyeball divergence in move usage, question quality, rail adherence. Divergence is data for wording fixes, not an automated gate.
 5. **Regression rule:** any SKILL.md edit → re-run 1 and 2 on Claude Code before calling it done.
 
 ## 9. Build plan (v0.1, ~half a day)

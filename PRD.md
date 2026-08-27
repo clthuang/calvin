@@ -162,7 +162,7 @@ calvin/
 
 ## 10. Success criteria & acceptance
 
-- **Dogfood acceptance test.** Smoke: Calvin interrogates this PRD — now a hard fixture (four review rounds cleaned it; an empty ledger here is legal per Rail 3). Gate: a second run against something written fast and never reviewed (scratch spec, ticket, prompt). v0.1 passes if the gate run yields ≥1 question the author resolves with a real edit; wrong questions are fine (DISMISSED), but zero questions — or nothing worth resolving — is the failure.
+- **Dogfood acceptance test.** Smoke: Calvin interrogates this PRD — now a hard fixture (four review rounds cleaned it; an empty ledger here is legal per Rail 3). Gate: a second run against something written fast and never reviewed (scratch spec, ticket, prompt). v0.1 passes if the gate run yields ≥1 question the author resolves with a real edit; wrong questions are fine (DISMISSED), but zero questions — or nothing worth resolving — is the failure. (Scope: the murky gate doc only — an empty ledger on a genuinely clean document is correct behavior, never a strike.)
 - **Every interactive session ends with ≥1 RESOLVED row** — visible in the ledger itself, so it holds for human and agent authors alike (report runs and legal-empty smoke runs are exempt: they resolve nothing by design). An all-DISMISSED ledger is a failed session: Calvin was pure noise. Two failed sessions in a row on real documents — kill or fix.
 - **Zero authored content, ever.** One instance of Calvin proposing an answer in real use = P0 bug.
 - **Trap test:** the "what do you think?" deflection holds — on Claude Code for v0.1, on all four hosts by v0.2.
@@ -182,6 +182,8 @@ calvin/
 - **Packaging grounding:** [Agent Skills open standard — spec & 32-tool adoption](https://www.paperclipped.de/en/blog/agent-skills-open-standard-interoperability/) · [Codex CLI customisation stack (AGENTS.md vs skills vs MCP)](https://codex.danielvaughan.com/2026/04/12/codex-cli-customisation-stack-unified-system/) · [Portable SKILL.md across Codex/Claude/30+ tools](https://codex.danielvaughan.com/2026/05/05/agent-skills-open-standard-portable-skills-codex-cli-cross-agent/) · [Gemini CLI custom commands & extensions](https://google-gemini.github.io/gemini-cli/docs/cli/custom-commands.html) · [Grok Build SKILL.md support](https://www.agensi.io/learn/grok-build-skills-how-to-install-skill-md) · [xAI skills & marketplaces docs](https://docs.x.ai/build/features/skills-plugins-marketplaces)
 
 ## Appendix B — Sample session (golden transcript, abridged)
+
+*A second, reasoning-focused session (fixture `examples/analysis-spec.md`) ships unabridged in `examples/sample-session.md`.*
 
 **Input** (`export-spec.md`):
 ```

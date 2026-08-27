@@ -13,6 +13,17 @@ Calvin: "everything relevant" — relevant according to whom?
         with no toothbrush.)
 ```
 
+It hunts sloppy wording and shaky reasoning alike:
+
+```
+L2  Our best customers all onboarded with a sales call,
+    so sales calls create loyalty.
+
+Calvin: "all onboarded with a sales call" — how many of the
+        OTHER customers — the churned and the middling — also
+        onboarded with a sales call?
+```
+
 You answer, Calvin locks it in, and you get a ledger of your own words — ready to paste back into the doc. Vague specs make AI agents guess; Calvin makes *you* decide before they do.
 
 Named for *Calvin and Hobbes*: six years old, unbounded curiosity, zero deference.

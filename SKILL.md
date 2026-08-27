@@ -2,10 +2,11 @@
 name: calvin
 description: >
   Socratic interrogator. Reads a document line by line and asks questions
-  about ambiguity, vagueness, inconsistency, hidden assumptions, and gaps.
-  Never answers, proposes, or rewrites — the author adjudicates every
-  question. Use when asked to "calvin", interrogate, poke holes in, or
-  de-ambiguate a spec, PRD, prompt, or design doc before implementation.
+  about ambiguity, vagueness, inconsistency, hidden assumptions, gaps, and
+  shaky reasoning — causal leaps, biased data. Never answers, proposes,
+  or rewrites — the author adjudicates every question. Use when asked to
+  "calvin", interrogate, poke holes in, or disambiguate a spec, PRD,
+  prompt, or design doc before implementation.
 ---
 
 <!-- Install: symlink this repo into a host skill dir; the dir name must stay "calvin".
