@@ -70,3 +70,56 @@ Run in a fresh Claude Code session, per DESIGN §8:
 7. **Log:** append resulting PRD/DESIGN edits, and record the tally line (`☑ N resolved · M open · K dismissed`) of the first three real sessions — read them against the kill rule; a string of 1:5:9 tallies is a warning that must not be read as a pass.
 
 **Done =** all Phase 1–3 checkboxes green + Phase 4 steps 1–3 passed on Claude Code. (v0.2 = same trap test on Codex/Gemini/Grok — out of scope here.)
+
+---
+
+# Update U — Zoom-frame alignment (v0.1.1) + host verification (v0.2)
+
+**Trigger:** the Z1–Z4 zoom-level sweep and sixth category `reasoning` landed in SKILL.md / PRD §4.1 / DESIGN §4 (commit "Add four-zoom-level sweep"), leaving three implementation surfaces stale. Executor note: phases self-contained; run consecutively.
+
+## Phase U0 — Discovery ✅ (inline, 2026-08-27)
+
+Format contract inherited from Phase 0 above (unchanged; validator still passes post-frame). Verified stale by grep:
+- `SKILL.md` frontmatter description: 0 mentions of reasoning/analytical defects — the trigger surface undersells the new capability.
+- `README.md`: 0 mentions of reasoning/zoom/Simpson's — sells the 5-category tool.
+- `examples/sample-session.md`: 0 reasoning coverage; L5 balance note still "3 lexical / 2 structural"; the 3-line export fixture *cannot* produce a reasoning finding (no analytical claim in it).
+- Copy-ready source for U2: the live fallacy-fixture run from 2026-08-27 (referral/sales-call/survey 3-liner → 11 findings incl. 5 `reasoning`, all probe-shaped) — reuse fixture verbatim.
+
+## Phase U1 — Trigger & README alignment
+
+1. **Frontmatter:** extend `description` to name the reasoning lens (e.g. "…hidden assumptions, gaps, and shaky reasoning — causal leaps, biased samples"). Constraints per Phase 0: ≤1024 chars, no angle brackets, keep the literal word "calvin".
+2. **README:** add one reasoning question to the example block (copy row 6 of the U0 fallacy run — the survivorship probe) and extend the rules line: questions cover wording *and* reasoning.
+
+**Verify:** `quick_validate.py .` passes · description grep has no `<>` · README shows both a vagueness and a reasoning question.
+**Guards:** don't grow description past ~450 chars (skill-listing truncation risk); don't put fallacy names in example *questions* (probe, never diagnose).
+
+## Phase U2 — Golden transcript v2
+
+1. Append a second mini-session to `examples/sample-session.md`: the U0 fallacy fixture (3 lines), one round of ≤5 questions with ≥2 `reasoning` probes (copy from the U0 run), one DRILL→CONFIRM exchange, close ledger.
+2. Update the L5 balance note: "export session: 3 lexical / 2 structural · analysis session: reasoning-heavy — hosts imitate both ratios."
+3. Update this file's Phase 2 balance spec to match (≥2 structural AND ≥2 reasoning across the two sessions).
+
+**Verify:** invariants I1–I5 hold by inspection on both sessions; no question contains a fallacy name or candidate value.
+**Guards:** don't rewrite the export session (it's the v0.1 behavioral anchor); additions only.
+
+## Phase U3 — Regression gate (DESIGN §8.5)
+
+1. Headless: `claude -p "calvin report PRD.md"` — machinery check vs the 13-finding baseline; deltas are data, not failures (PRD changed too).
+2. Headless: `calvin report` on both example fixtures — export fixture yields no `reasoning` rows (negative control), fallacy fixture yields ≥3.
+3. Interactive (Terry): gate run on a fresh unreviewed doc + the "what do you think?" trap — per PRD §10, unchanged.
+
+**Verify:** all three recorded in this file's run log.
+**Guards:** fix failures by SKILL.md *wording only*; never add machinery.
+
+## Phase U4 — v0.2 host verification
+
+1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok), Gemini per its skill path.
+2. Per host: run the export-fixture input + the trap; eyeball-diff against both golden sessions (DESIGN §8.4).
+3. Update PRD §7.1 Notes column per host: verified / divergent (with the wording fix applied) / unsupported.
+
+**Verify:** PRD §7.1 has no remaining "verify in v0.2" cells; trap holds on every verified host.
+**Guards:** divergence = SKILL.md wording data, not per-host forks — one file stays the whole product.
+
+## Phase U5 — Ship
+
+Commit + push; update memory charter; hand Terry the adjudication queue (7 open smoke findings from the v0.1 PRD run + anything U3/U4 leaves OPEN).
