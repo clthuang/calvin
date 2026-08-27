@@ -1,6 +1,6 @@
 # Calvin v0.1 — Implementation Plan
 
-**Executor note:** each phase is self-contained and runnable in a fresh context. Normative sources: `PRD.md` v3.1 (what/why) · `DESIGN.md` (how) · this file (do). Working dir: `/Users/terry/projects/calvin`.
+**Executor note:** each phase is self-contained and runnable in a fresh context. Normative sources: `PRD.md` v3.1 (what/why) · `DESIGN.md` (how) · this file (do); on conflict the higher layer wins: PRD > DESIGN > PLAN. Canonical role term: **the author** (the content producer adjudicating questions — Terry here). Working dir: `/Users/terry/projects/calvin`.
 
 ---
 
@@ -41,7 +41,7 @@
 
 ## Phase 2 — Write `examples/sample-session.md` ✅ (2026-08-27)
 
-**What:** the unabridged golden transcript — copy PRD Appendix B and extend to a full session: all 5 round-1 questions (≥2 structural/cross-line, ≤3 single-word lexical hits — models imitate the transcript's ratio), the DRILL→CONFIRM→"locked in?" exchange, a FLAG-CONFLICT exchange (natural fixture: the author's "bigger goes async" answer collides with L7's "at any time" — surface both, author chooses), the Rail-1 trap + deflection, one DISMISSED verdict, and the closing ledger built with PRD §6's exact row schema (incl. one `L<n>+<m>` citation and an OPEN cause note).
+**What:** the unabridged golden transcript — copy PRD Appendix B and extend to a full session: all 5 round-1 questions (≥2 structural/cross-line, ≤3 single-word lexical hits — caps apply to the export session; the analysis session added by U2 is reasoning-heavy. "Models imitate the transcript's ratio" is a working hypothesis from premortem #3, unverified), the DRILL→CONFIRM→"locked in?" exchange, a FLAG-CONFLICT exchange (natural fixture: the author's "bigger goes async" answer collides with "at any time" — line 1 of `examples/export-spec.md`, presented as L7 in the specimen — surface both, author chooses), the Rail-1 trap + deflection, one DISMISSED verdict, and the closing ledger built with PRD §6's exact row schema (incl. one `L<n>+<m>` citation and an OPEN cause note).
 
 **Verify:**
 - [ ] Transcript demonstrates all three moves, all three statuses, and invariants I1–I5 from DESIGN §3.2 hold by inspection (I5: no question contains a candidate value)
@@ -49,7 +49,7 @@
 
 ## Phase 3 — Install ✅ (2026-08-27)
 
-**What:** `mkdir -p ~/.claude/skills && ln -s /Users/terry/projects/calvin ~/.claude/skills/calvin` (Phase 0: `~/.claude/skills/` does not exist yet; directory name `calvin` must equal frontmatter `name`).
+**What:** `mkdir -p ~/.claude/skills && ln -sfn /Users/terry/projects/calvin ~/.claude/skills/calvin` (`ln -sfn` is idempotent — "does not exist yet" described planning-time state; the link is live now; directory name `calvin` must equal frontmatter `name`).
 
 **Verify:**
 - [ ] `readlink ~/.claude/skills/calvin` → the repo
@@ -67,9 +67,9 @@ Run in a fresh Claude Code session, per DESIGN §8:
 4. **Report mode:** `calvin report <doc>` → single pass, every row `OPEN (report)`, zero interactive questions. If the host mis-routes the word "report", log it (DESIGN §10 open question).
 5. **Invariants I1–I5** (DESIGN §3.2) checked against the gate-run transcript + ledger — I5 especially: no RESOLVED answer whose substance first appeared in a Calvin question.
 6. **On any failure:** fix SKILL.md *wording* (never add machinery), re-run 2–3. Two consecutive failed gate runs → back to DESIGN, per PRD §10's kill-or-fix rule.
-7. **Log:** append resulting PRD/DESIGN edits, and record the tally line (`☑ N resolved · M open · K dismissed`) of the first three real sessions — read them against the kill rule; a string of 1:5:9 tallies is a warning that must not be read as a pass.
+7. **Log:** append resulting PRD/DESIGN edits, and record the tally line (`☑ N resolved · M open · K dismissed`) of the first three real sessions — read them against the kill rule; a mostly-open shape (the 1:5:9 tally is illustrative, not a literal threshold) is a warning: pick the next gate doc more deliberately and re-run — only true gate failures count strikes toward kill-or-fix.
 
-**Done =** all Phase 1–3 checkboxes green + Phase 4 steps 1–3 passed on Claude Code. (v0.2 = same trap test on Codex/Gemini/Grok — out of scope here.)
+**Done =** all Phase 1–3 checkboxes green + Phase 4 steps 1–3 passed on Claude Code; steps 4–7 are instruments and follow-ups, not gates. (v0.2 host verification is planned below as Phase U4.)
 
 ---
 
@@ -127,7 +127,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 
 1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok). Gemini: discover the path first (check `gemini` CLI docs for Agent Skills support; try `~/.gemini/skills/`); if none exists, record "unsupported — no skill path found" in PRD §7.1 and move on.
 2. Per host: run `examples/export-spec.md` and `examples/analysis-spec.md` + the trap; eyeball-diff each against its corresponding golden session (DESIGN §8.4).
-3. Update PRD §7.1 Notes column per host: verified / divergent (with the wording fix applied) / unsupported.
+3. Update PRD §7.1 Notes column per host. **Divergent =** a broken invariant (I1–I5), a missing or extra move type, or a rail violation — pure wording drift is fine. Attempt one SKILL.md wording fix before recording; label "divergent (fix: <what>)" only if it persists. A host that still fails the trap after one fix attempt is labeled **"unsafe — trap fails"** and cannot be marked verified.
 
 **Verify:** PRD §7.1 has no remaining "verify in v0.2" cells; trap holds on every verified host.
 **Guards:** divergence = SKILL.md wording data, not per-host forks — one file stays the whole product.
@@ -136,5 +136,18 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 
 Commit + push to `main`; update memory charter; hand Terry the adjudication queue (7 open smoke findings from the v0.1 PRD run + anything U3/U4 leaves OPEN).
 
-**Verify:** `quick_validate.py .` passes on the final tree; U1/U2 greps re-run clean; `git push` confirmed.
+**Verify:** `quick_validate.py .` passes on the final tree; U1/U2 greps re-run clean; `git push` confirmed; new results appended to the Run log below.
 **Guards:** one commit per phase-group is fine; never push with a failing validator.
+
+---
+
+# Run log
+
+| Date | Phase | What ran | Result |
+|------|-------|----------|--------|
+| 2026-08-27 | 4.4 | `claude -p "calvin report export-spec"` (3-line fixture) | 14 rows, all OPEN (report) — pass |
+| 2026-08-27 | 4.1 | `claude -p "calvin report PRD.md"` (smoke) | ☑ 0 · 13 · 0, 3 blockers; 6 applied, 7 OPEN for the author |
+| 2026-08-27 | — | Zoom-frame live test (`analysis-spec` fixture) | 11 rows incl. 5 `reasoning`, all probe-shaped — pass |
+| 2026-08-27 | plan | Calvin on this plan + agent plan-review | 26 findings (12 fixed) + 8 findings (all fixed); 14 ledger minors adjudicated into this revision |
+
+U3/U4 executors: append one row per run.
