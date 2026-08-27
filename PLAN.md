@@ -154,4 +154,6 @@ Commit + push to `main`; update memory charter; hand Terry the adjudication queu
 | 2026-08-27 | U3.2 | report on both fixtures (Claude Code) | export 14 rows · analysis 10 rows (5 `reasoning`) — recorded as data |
 | 2026-08-27 | U4 | Codex: `codex exec` report + one-shot trap, export fixture only | **partially verified** — schema/citations/probe-shape hold; one-shot deflection held; owed: analysis fixture + mid-session trap (PRD §7.1). Gemini/Grok: CLIs not installed — runs blocked |
 
+| 2026-08-27 | simplify | 4-agent /simplify pass on SKILL.md (research-backed rewrite: 179→167 lines) | validator ✓; regression: `calvin report analysis-spec.md` → 13 rows, 5 `reasoning`, schema + probe-shape hold — behavior preserved |
+
 U3/U4 executors: append one row per run.

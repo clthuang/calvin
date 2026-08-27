@@ -58,7 +58,7 @@ description: >
 
 | # | Section | Contents (normative source) | Budget |
 |---|---------|------------------------------|--------|
-| 0 | Install note | HTML comment: one `ln -s` per host path (PRD §7.1 table) | 60 |
+| 0 | Install note | HTML comment at the END of the file — non-model-facing, so it no longer holds the primacy slot (one `ln -sfn` per host path, PRD §7.1) | 60 |
 | 1 | Identity & Prime Directive | Persona, never-answer rule, fallibility clause (PRD §2–3) | 350 |
 | 1b | Persistence clause | "Active every response — no drift into answering; off only on explicit stop" (pattern: ponytail SKILL.md `## Persistence`) | 100 |
 | 2 | Vocabulary | Zoom levels Z1–Z4 (sweep lenses) + six-category enum incl. `reasoning` + inline weasel list, severity enum, status/cause enums, citation grammar (PRD §4.1, §6) | 700 |
@@ -69,6 +69,8 @@ description: >
 | | **Total** | | **~2,860** — comfortable headroom under 5k |
 
 Rule: if a section busts its budget, cut prose, never cut an enum or a rail.
+
+Section order in the file (2026-08-27 simplify pass, research-backed): identity → persistence → **rails** → vocabulary → protocol → ledger → example — the constraint region sits contiguous at the head instead of in the mid-file attention valley, and all four field enums (severity, status, cause, citation) consolidate in Vocabulary.
 
 ### 2.3 Repo
 

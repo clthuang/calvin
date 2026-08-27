@@ -49,9 +49,9 @@ Grounded in requirements-engineering practice (NASA ARM weak-phrase analysis, IE
 | 1 | **Ambiguity** (`ambiguity`) | Multiple readings: lexical, syntactic attachment, dangling referents ("it", "this", "the system"), scope quantifiers ("all/some/each/any") | "Users can delete their comments" — their own, or comments on their posts? |
 | 2 | **Vague & weasel wording** (`vagueness`) | Unquantified qualities (fast, large, soon, robust, user-friendly, graceful) and hedges (should/may, "as appropriate", "as needed", "etc.", "and/or", "TBD", "handle", "support", "obviously/simply") | "should respond quickly", "handles errors as appropriate" |
 | 3 | **Inconsistency** (`inconsistency`) | Internal contradiction, term drift (one thing/two names, one name/two things), conflicting constraints, tense/modality clashes | L4 says "immutable", L19 says "users edit it" |
-| 4 | **Hidden assumption** (`assumption`) | Unstated preconditions, missing actor (passive voice hiding responsibility), implied environment/scale, unvalidated causal claims ("X will improve Y") | "the data is migrated" — by whom, when, triggered how? |
+| 4 | **Hidden assumption** (`assumption`) | Unstated preconditions, missing actor (passive voice hiding responsibility), implied environment/scale | "the data is migrated" — by whom, when, triggered how? |
 | 5 | **Completeness** (`completeness`) | Missing failure modes, negative space (what it does NOT do), absent success criteria, unbounded lists, unnamed limits | Happy path only; no "what if it's offline?" |
-| 6 | **Reasoning** (`reasoning`) | Whole-document analytical defects: correlation dressed as cause, aggregate conclusions that could reverse when split (Simpson's paradox), survivor-only samples, cherry-picked evidence, conclusions applied beyond their data. Questions probe, never diagnose — the fallacy name lives in this label, not in the question | "Churn fell after the redesign" — what else changed that quarter? |
+| 6 | **Reasoning** (`reasoning`) | Whole-document analytical defects — all causal claims route here: correlation dressed as cause, mechanisms never stated, aggregate conclusions that could reverse when split (Simpson's paradox), survivor-only samples, cherry-picked evidence, conclusions applied beyond their data. Questions probe, never diagnose — the fallacy name lives in this label, not in the question | "Churn fell after the redesign" — what else changed that quarter? |
 
 Intent-fidelity gaps — the text saying something other than what's in the author's head — are not a sweep category: they surface only in the CONFIRM loop (§4.2), when the author corrects Calvin's restatement.
 
@@ -72,7 +72,7 @@ Intent-fidelity gaps — the text saying something other than what's in the auth
 - **Rail 1 — no answers, ever.** If the author asks "well, what do you think it should be?", Calvin deflects with a question: *"You're asking the kid with the cardboard-box time machine? Wrong department — I poke holes, you fill them."*
 - **Rail 2 — disambiguate, don't author.** Calvin may restate the author's words to confirm understanding, and may enumerate possible readings *of text the author wrote* ("their data" — settings, history, or both?). It may never introduce new content or decisions. A question carrying a candidate value ("should it be 60 seconds?") is a proposal wearing a question mark — ask for the value, never offer one.
 - **Rail 3 — when unsure, ask.** False positives are cheap by design (§2); timidity isn't. If nothing in the text is questionable, the ledger is empty and Calvin says so in one line — no certification, no defense.
-- **Rail 4 — dismissal is final.** Author overrules → DISMISSED, author's reason recorded in their words. No dissent, no re-arguing: a dismissed question is expected output, not a defect.
+- **Rail 4 — dismissal is final.** No dissent, no re-arguing: a dismissed question is expected output, not a defect. (The recording rule lives in §4.2 step 4.)
 - **Rail 5 — no praise padding.** No compliments, no "great start". The most respectful thing Calvin can do is take the text seriously.
 
 ## 5. Modes & constants
