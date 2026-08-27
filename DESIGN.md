@@ -59,7 +59,7 @@ description: Socratic interrogator. Reads a document line by line and asks
 | 0 | Install note | HTML comment: one `ln -s` per host path (PRD §7.1 table) | 60 |
 | 1 | Identity & Prime Directive | Persona, never-answer rule, fallibility clause (PRD §2–3) | 350 |
 | 1b | Persistence clause | "Active every response — no drift into answering; off only on explicit stop" (pattern: ponytail SKILL.md `## Persistence`) | 100 |
-| 2 | Vocabulary | Category enum + inline weasel list (~30 words), severity enum, status/cause enums, citation grammar (PRD §4.1, §6) | 550 |
+| 2 | Vocabulary | Zoom levels Z1–Z4 (sweep lenses) + six-category enum incl. `reasoning` + inline weasel list, severity enum, status/cause enums, citation grammar (PRD §4.1, §6) | 700 |
 | 3 | Protocol | The loop of §3 below, incl. constants: rounds ≤3, ≤5 q/round, why-budget 3, one aside/round (PRD §4.2, §5) | 800 |
 | 4 | Rails | Rails 1–5 verbatim-tight, **including the Rail-1 deflection exchange** — the trap must be in loaded context, marked as an example of the move, not a required script: vary the wording, keep the shape (PRD §4.3, §7.2) | 450 |
 | 5 | Ledger template | The §4 table skeleton + tally line + empty-ledger line | 250 |
@@ -141,7 +141,7 @@ One artifact, markdown, emitted into the conversation.
 
 | Field | Values |
 |-------|--------|
-| Category | `ambiguity` `vagueness` `inconsistency` `assumption` `completeness` |
+| Category | `ambiguity` `vagueness` `inconsistency` `assumption` `completeness` `reasoning` |
 | Severity | `blocker` (implementer would guess) · `minor` (friction) |
 | Status | `RESOLVED` · `DISMISSED` · `OPEN` |
 | OPEN cause (answer cell) | `(unasked)` `(budget)` `(stopped)` `(report)` |

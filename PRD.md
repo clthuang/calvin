@@ -42,7 +42,7 @@ Voice sample:
 
 ### 4.1 Finding taxonomy
 
-Grounded in requirements-engineering practice (NASA ARM weak-phrase analysis, IEEE 29148 ambiguity guidance) plus Socratic elenchus and five-whys drilling. Five categories — the ledger's canonical labels are the lowercase short forms:
+Grounded in requirements-engineering practice (NASA ARM weak-phrase analysis, IEEE 29148 ambiguity guidance) plus Socratic elenchus and five-whys drilling. The sweep runs at four zoom levels — words, sentences, paragraphs, whole document — as lenses, not partitions: levels are where Calvin hunts, categories are what the ledger records. Six categories — the canonical labels are the lowercase short forms:
 
 | # | Category (`label`) | What Calvin hunts | Example trigger |
 |---|--------------------|-------------------|-----------------|
@@ -51,13 +51,14 @@ Grounded in requirements-engineering practice (NASA ARM weak-phrase analysis, IE
 | 3 | **Inconsistency** (`inconsistency`) | Internal contradiction, term drift (one thing/two names, one name/two things), conflicting constraints, tense/modality clashes | L4 says "immutable", L19 says "users edit it" |
 | 4 | **Hidden assumption** (`assumption`) | Unstated preconditions, missing actor (passive voice hiding responsibility), implied environment/scale, unvalidated causal claims ("X will improve Y") | "the data is migrated" — by whom, when, triggered how? |
 | 5 | **Completeness** (`completeness`) | Missing failure modes, negative space (what it does NOT do), absent success criteria, unbounded lists, unnamed limits | Happy path only; no "what if it's offline?" |
+| 6 | **Reasoning** (`reasoning`) | Whole-document analytical defects: correlation dressed as cause, aggregate conclusions that could reverse when split (Simpson's paradox), survivor-only samples, cherry-picked evidence, conclusions applied beyond their data. Questions probe, never diagnose — the fallacy name lives in this label, not in the question | "Churn fell after the redesign" — what else changed that quarter? |
 
 Intent-fidelity gaps — the text saying something other than what's in the author's head — are not a sweep category: they surface only in the CONFIRM loop (§4.2), when the author corrects Calvin's restatement.
 
 ### 4.2 Interrogation protocol
 
 1. **Ingest & number.** Take the input (file path or pasted text). Number every line. All citations are `L<n>`, `L<n>–<m>`, or `L<n>+<m>` (non-contiguous pair).
-2. **Sweep.** One full pass tagging spans that match the taxonomy, each marked **blocker** (an implementer would have to guess) or **minor** (friction).
+2. **Sweep.** Four passes at increasing zoom (word → sentence → paragraph → whole document), tagging spans that match the taxonomy, each marked **blocker** (an implementer would have to guess) or **minor** (friction).
 3. **Ask in rounds.** Up to 5 questions per round, blockers first. One decision per question — compound phrasing probing the same decision is fine; bundling two decisions is not. **Hard stop: 3 rounds per session.** A human author may extend; an agent author may not — for agent authors the cap is the termination guarantee. Calvin doesn't detect authorship: the author type is declared at invocation ("author is an agent"); undeclared means human. A round = one batch of ≤5 questions plus the dialogue that processes their answers; drills live inside their round and consume the why-budget, never rounds.
 4. **Process each answer with exactly three moves:**
    - **CONFIRM** — restate the author's answer in their own terms and ask "locked in?". Yes → RESOLVED, with the author's words (not the paraphrase) recorded verbatim. No → the correction becomes the new answer — this is where intent-fidelity gaps surface.
@@ -146,7 +147,7 @@ calvin/
 - **Answering, proposing, rewriting** — the Prime Directive.
 - **Being right** — false positives are normal output (§2). Precision is not a goal; answerability is.
 - **Grammar/style editing** — not a copyeditor; "vague & weasel wording" means *meaning*-sloppy, not comma-sloppy.
-- **Fact-checking against the world** — Calvin checks internal consistency and author intent, not whether the market sizing is right.
+- **Fact-checking against the world** — Calvin checks internal consistency and author intent, not whether the market sizing is right. (How the sizing was *reasoned* is in scope — category 6; whether it matches reality is not.)
 - **Scoring/grading** — no "7/10 clarity". Ledger counts only.
 - **Consumer polish** — personal tooling. No onboarding flows, no telemetry, no OS-specific work.
 

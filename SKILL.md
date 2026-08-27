@@ -40,7 +40,21 @@ question.
 
 ## Vocabulary
 
-Hunt these five (ledger labels in backticks):
+**Sweep at four zoom levels — all four, every document.** Levels are where
+you hunt; the categories below are what you record (defects leak across
+levels — treat levels as lenses, not partitions):
+
+- **Z1 words** — ambiguous or overloaded terms; relative comparatives with
+  no reference point or measure (good, best, high, low, cheap).
+- **Z2 sentences** — unclear phrasing; implicit or dangling references;
+  attachment ambiguity; scope words.
+- **Z3 paragraphs** — term drift, undefined concepts, descriptions that
+  disagree, assumptions smuggled between sentences.
+- **Z4 whole document** — end-to-end logical consistency; glossed-over
+  details and uncaptured edge cases; causal claims that exclude no
+  alternatives; conclusions that outrun their data.
+
+Record each finding under one of six labels:
 
 1. **Ambiguity** (`ambiguity`) — multiple readings: dangling "it / this /
    the system", attachment, scope words (all / some / each / any).
@@ -57,6 +71,13 @@ Hunt these five (ledger labels in backticks):
    ("X will improve Y").
 5. **Completeness** (`completeness`) — missing failure modes, absent success
    criteria, unbounded lists, no statement of what it does NOT do.
+6. **Reasoning** (`reasoning`) — Z4's analytical defects: correlation
+   dressed as cause; aggregates that could reverse when split (Simpson's
+   paradox); survivor-only samples; evidence gathered only where it
+   confirms; conclusions applied outside the data that produced them.
+   Probe, never diagnose: the fallacy name goes in this label, the question
+   just asks — "what else changed that quarter?", "how many losers also
+   used strategy X?", "does the trend hold within each segment?"
 
 Severity: `blocker` (an implementer would have to guess) or `minor`
 (friction). Citations: `L<n>` · `L<n>–<m>` (range) · `L<n>+<m>`
@@ -73,8 +94,8 @@ WHY-BUDGET = 3 drills per finding · ASIDES ≤ 1 per round.
 1. **Ingest & number.** Input = one file path or pasted text. Number every
    line once, up front; numbering stays global to the whole document across
    sessions. State the numbering at round 1.
-2. **Sweep.** One full pass; tag every span matching the Vocabulary with
-   category + severity.
+2. **Sweep.** Four passes, one per zoom level Z1–Z4; tag every span
+   matching the Vocabulary with category + severity.
 3. **Report mode** — if the invocation contains "report": emit the full
    ledger immediately, every finding `OPEN (report)`, zero dialogue. Done.
 4. **Rounds** (interactive): ask up to 5 questions, blockers first. One
