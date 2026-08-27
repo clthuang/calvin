@@ -94,7 +94,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
   Survivorship probe to copy into README (U1): *"all onboarded with a sales call" — how many of the OTHER customers — the churned and the middling — also onboarded with a sales call?*
 - Review addendum (2026-08-27): two normative surfaces are also stale and folded in below — DESIGN §2.1's "verbatim v0.1" frontmatter draft (U1 step 3) and §8.4's singular "the sample input" + PRD App. B's single-session framing (U2 step 5). Both fixtures now exist as real files: `examples/export-spec.md`, `examples/analysis-spec.md`.
 
-## Phase U1 — Trigger & README alignment
+## Phase U1 — Trigger & README alignment ✅ (2026-08-27)
 
 1. **Frontmatter:** extend `description` to name the reasoning lens — sample wording, redraft freely within constraints: "…hidden assumptions, gaps, and shaky reasoning" (live value is 352 chars; verify the result ≤400 by counting). Constraints per Phase 0: ≤1024 chars, no angle brackets, keep the literal word "calvin".
 2. **README:** add one reasoning question to the example block (the survivorship probe quoted in U0) and extend the rules line: questions cover wording *and* reasoning.
@@ -103,7 +103,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 **Verify:** `quick_validate.py .` passes · description grep has no `<>` · README shows both a vagueness and a reasoning question.
 **Guards:** keep description ≤400 chars (Phase 0 sweet spot; avoids the unquantified skill-listing truncation budget); don't put fallacy names in example *questions* (probe, never diagnose).
 
-## Phase U2 — Golden transcript v2
+## Phase U2 — Golden transcript v2 ✅ (2026-08-27)
 
 1. Append a second mini-session to `examples/sample-session.md`: the U0 fallacy fixture (3 lines), one round of ≤5 questions with ≥2 `reasoning` probes, one DRILL→CONFIRM exchange, close ledger. Golden transcripts are *authored specimens*, not recordings — write the author's answers in the same style as the export session's.
 2. Update the balance note at `examples/sample-session.md` L5: "export session: 3 lexical / 2 structural · analysis session: reasoning-heavy — hosts imitate both ratios."
@@ -114,7 +114,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 **Verify:** invariants I1–I5 hold by inspection on both sessions; no question contains a fallacy name or candidate value.
 **Guards:** don't rewrite the export session (it's the v0.1 behavioral anchor); additions only.
 
-## Phase U3 — Regression gate (DESIGN §8.4–8.5)
+## Phase U3 — Regression gate (DESIGN §8.4–8.5) ✅ headless 2026-08-27 (step 3 gate+trap: the author, interactively — unchanged)
 
 1. Headless: `claude -p "calvin report PRD.md"` — machinery check. **Fail =** no ledger emitted, ledger schema broken, or any question proposes content; finding counts are data, not gates.
 2. Headless: `calvin report` on `examples/export-spec.md` and `examples/analysis-spec.md` (real files, 1-based numbering — citations will differ from the golden specimens' presentation; diff move usage and question shape, not line numbers). Reasoning-row counts on each are recorded as data per DESIGN §8.4 — no count is a pass/fail gate (PRD §8: precision is not a goal).
@@ -123,7 +123,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 **Verify:** all three recorded in this file's run log.
 **Guards:** fix failures by SKILL.md *wording only*; never add machinery.
 
-## Phase U4 — v0.2 host verification
+## Phase U4 — v0.2 host verification ◐ (2026-08-27: Codex verified; Gemini/Grok blocked — CLIs not installed)
 
 1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok). Gemini: discover the path first (check `gemini` CLI docs for Agent Skills support; try `~/.gemini/skills/`); if none exists, record "unsupported — no skill path found" in PRD §7.1 and move on.
 2. Per host: run `examples/export-spec.md` and `examples/analysis-spec.md` + the trap; eyeball-diff each against its corresponding golden session (DESIGN §8.4).
@@ -149,5 +149,9 @@ Commit + push to `main`; update memory charter; hand Terry the adjudication queu
 | 2026-08-27 | 4.1 | `claude -p "calvin report PRD.md"` (smoke) | ☑ 0 · 13 · 0, 3 blockers; 6 applied, 7 OPEN for the author |
 | 2026-08-27 | — | Zoom-frame live test (`analysis-spec` fixture) | 11 rows incl. 5 `reasoning`, all probe-shaped — pass |
 | 2026-08-27 | plan | Calvin on this plan + agent plan-review | 26 findings (12 fixed) + 8 findings (all fixed); 14 ledger minors adjudicated into this revision |
+| 2026-08-27 | U1–U2 | description 397c w/ reasoning; DESIGN §2.1/§8.4 + PRD App B synced; README survivorship example; transcript session 2 | validator ✓ |
+| 2026-08-27 | U3.1 | `claude -p "calvin report PRD.md"` | valid ledger, ☑ 0·19·0, no proposed content — PASS; 1 earned blocker ported to PRD §10 (clean-doc carve-out) |
+| 2026-08-27 | U3.2 | report on both fixtures (Claude Code) | export 14 rows · analysis 10 rows (5 `reasoning`) — recorded as data |
+| 2026-08-27 | U4 | Codex: `codex exec` report + trap on export fixture | **verified** — schema/citations/probe-shape hold; trap deflects with varied wording; drift noted in PRD §7.1. Gemini/Grok: CLIs not installed — unverified |
 
 U3/U4 executors: append one row per run.

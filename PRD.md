@@ -117,9 +117,9 @@ Why this is now sufficient: Anthropic's Agent Skills format became an open stand
 | Host | Discovery path | Notes |
 |------|---------------|-------|
 | Claude Code | `~/.claude/skills/calvin/` or `.claude/skills/` | Native |
-| Codex CLI | `~/.agents/skills/calvin/` or `.agents/skills/` | Custom prompts folder is deprecated in favor of skills |
-| Gemini CLI | Agent Skills standard | Also installable as an extension if ever needed |
-| Grok Build | `~/.grok/skills/` and `.agents/skills/`; auto-discovers Claude skill dirs | Per xAI docs; verify in v0.2 |
+| Codex CLI | `~/.agents/skills/calvin/` or `.agents/skills/` | **Verified 2026-08-27** — report mode + trap both pass via `codex exec`; drift: smart quotes, `☐` tally glyph, more verbose sweeps, deflection labeled DRILL — data, no invariant broken |
+| Gemini CLI | Agent Skills standard | Unverified — CLI not installed on this machine (2026-08-27) |
+| Grok Build | `~/.grok/skills/` and `.agents/skills/`; auto-discovers Claude skill dirs | Unverified — CLI not installed on this machine (2026-08-27); per xAI docs it reads `.agents/skills/`, which is now populated |
 | Cursor / VS Code / others | Agent Skills standard paths | Per-tool docs |
 | Any plain chat LLM | Paste `SKILL.md` + the text | Universal fallback, zero install |
 
