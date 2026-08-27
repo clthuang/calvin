@@ -62,7 +62,7 @@
 Run in a fresh Claude Code session, per DESIGN §8:
 
 1. **Smoke:** `calvin PRD.md` — hard fixture after four review rounds; an empty ledger is legal (Rail 3), not a failure. Checks the machinery runs, not the value.
-2. **Gate:** `calvin <doc>` where `<doc>` is something written fast and never reviewed (scratch spec, ticket, prompt). **Pass:** ≥1 question the owner resolves with a real edit. **Fail:** zero questions, or all-DISMISSED (PRD §10). This fixture also tests premortem risks #2 (redundancy) and #3 (lexical-linter) alongside the gate itself.
+2. **Gate:** `calvin <doc>` where `<doc>` is something written fast and never reviewed (scratch spec, ticket, prompt). **Pass:** ≥1 question the author resolves with a real edit — one that changes meaning (adds a number, name, criterion, or decision), not formatting. **Fail:** all-DISMISSED, or zero questions on a doc the author picked *because* they judged it murky (a clean doc yielding zero questions is correct behavior, not a strike). This fixture also tests premortem risks #2 (redundancy) and #3 (lexical-linter) alongside the gate itself.
 3. **Trap:** mid-session ask "what do you think it should be?" **Pass:** Rail-1 deflection, zero proposed content.
 4. **Report mode:** `calvin report <doc>` → single pass, every row `OPEN (report)`, zero interactive questions. If the host mis-routes the word "report", log it (DESIGN §10 open question).
 5. **Invariants I1–I5** (DESIGN §3.2) checked against the gate-run transcript + ledger — I5 especially: no RESOLVED answer whose substance first appeared in a Calvin question.
@@ -75,7 +75,7 @@ Run in a fresh Claude Code session, per DESIGN §8:
 
 # Update U — Zoom-frame alignment (v0.1.1) + host verification (v0.2)
 
-**Trigger:** the Z1–Z4 zoom-level sweep and sixth category `reasoning` landed in SKILL.md / PRD §4.1 / DESIGN §4 (commit "Add four-zoom-level sweep"), leaving three implementation surfaces stale. Executor note: phases self-contained; run consecutively.
+**Trigger:** the Z1–Z4 zoom-level sweep and sixth category `reasoning` landed in SKILL.md / PRD §4.1 / DESIGN §4 (commit "Add four-zoom-level sweep"), leaving three implementation surfaces stale. Release mapping: U1–U3 = v0.1.1 (U5 ships it immediately); U4 = v0.2 (shipped separately when done). Executor note: phases self-contained; run consecutively.
 
 ## Phase U0 — Discovery ✅ (inline, 2026-08-27)
 
@@ -83,20 +83,28 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 - `SKILL.md` frontmatter description: 0 mentions of reasoning/analytical defects — the trigger surface undersells the new capability.
 - `README.md`: 0 mentions of reasoning/zoom/Simpson's — sells the 5-category tool.
 - `examples/sample-session.md`: 0 reasoning coverage; L5 balance note still "3 lexical / 2 structural"; the 3-line export fixture *cannot* produce a reasoning finding (no analytical claim in it).
-- Copy-ready source for U2: the live fallacy-fixture run from 2026-08-27 (referral/sales-call/survey 3-liner → 11 findings incl. 5 `reasoning`, all probe-shaped) — reuse fixture verbatim.
+- Copy-ready source for U2 — the fallacy fixture, verbatim (the live 2026-08-27 run produced 11 findings incl. 5 `reasoning`, all probe-shaped; the run itself is not stored, so this plan carries what U2 needs):
+
+  ```
+  L1  After we launched the referral program, signups doubled, so referrals work.
+  L2  Our best customers all onboarded with a sales call, so sales calls create loyalty.
+  L3  Surveyed users rated the feature 9/10, so the feature is a success.
+  ```
+
+  Survivorship probe to copy into README (U1): *"all onboarded with a sales call" — how many of the OTHER customers — the churned and the middling — also onboarded with a sales call?*
 
 ## Phase U1 — Trigger & README alignment
 
-1. **Frontmatter:** extend `description` to name the reasoning lens (e.g. "…hidden assumptions, gaps, and shaky reasoning — causal leaps, biased samples"). Constraints per Phase 0: ≤1024 chars, no angle brackets, keep the literal word "calvin".
+1. **Frontmatter:** extend `description` to name the reasoning lens — sample wording, redraft freely within constraints: "…hidden assumptions, gaps, and shaky reasoning — causal leaps, biased samples". Constraints per Phase 0: ≤1024 chars, no angle brackets, keep the literal word "calvin".
 2. **README:** add one reasoning question to the example block (copy row 6 of the U0 fallacy run — the survivorship probe) and extend the rules line: questions cover wording *and* reasoning.
 
 **Verify:** `quick_validate.py .` passes · description grep has no `<>` · README shows both a vagueness and a reasoning question.
-**Guards:** don't grow description past ~450 chars (skill-listing truncation risk); don't put fallacy names in example *questions* (probe, never diagnose).
+**Guards:** keep description ≤400 chars (Phase 0 sweet spot; avoids the unquantified skill-listing truncation budget); don't put fallacy names in example *questions* (probe, never diagnose).
 
 ## Phase U2 — Golden transcript v2
 
-1. Append a second mini-session to `examples/sample-session.md`: the U0 fallacy fixture (3 lines), one round of ≤5 questions with ≥2 `reasoning` probes (copy from the U0 run), one DRILL→CONFIRM exchange, close ledger.
-2. Update the L5 balance note: "export session: 3 lexical / 2 structural · analysis session: reasoning-heavy — hosts imitate both ratios."
+1. Append a second mini-session to `examples/sample-session.md`: the U0 fallacy fixture (3 lines), one round of ≤5 questions with ≥2 `reasoning` probes, one DRILL→CONFIRM exchange, close ledger. Golden transcripts are *authored specimens*, not recordings — write the author's answers in the same style as the export session's.
+2. Update the balance note at `examples/sample-session.md` L5: "export session: 3 lexical / 2 structural · analysis session: reasoning-heavy — hosts imitate both ratios."
 3. Update this file's Phase 2 balance spec to match (≥2 structural AND ≥2 reasoning across the two sessions).
 
 **Verify:** invariants I1–I5 hold by inspection on both sessions; no question contains a fallacy name or candidate value.
@@ -104,7 +112,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 
 ## Phase U3 — Regression gate (DESIGN §8.5)
 
-1. Headless: `claude -p "calvin report PRD.md"` — machinery check vs the 13-finding baseline; deltas are data, not failures (PRD changed too).
+1. Headless: `claude -p "calvin report PRD.md"` — machinery check vs the 13-finding baseline; finding-count deltas are data, not failures (PRD changed too). **Fail =** no ledger emitted, ledger schema broken, or any question proposes content.
 2. Headless: `calvin report` on both example fixtures — export fixture yields no `reasoning` rows (negative control), fallacy fixture yields ≥3.
 3. Interactive (Terry): gate run on a fresh unreviewed doc + the "what do you think?" trap — per PRD §10, unchanged.
 
@@ -113,7 +121,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 
 ## Phase U4 — v0.2 host verification
 
-1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok), Gemini per its skill path.
+1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok). Gemini: discover the path first (check `gemini` CLI docs for Agent Skills support; try `~/.gemini/skills/`); if none exists, record "unsupported — no skill path found" in PRD §7.1 and move on.
 2. Per host: run the export-fixture input + the trap; eyeball-diff against both golden sessions (DESIGN §8.4).
 3. Update PRD §7.1 Notes column per host: verified / divergent (with the wording fix applied) / unsupported.
 
@@ -122,4 +130,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 
 ## Phase U5 — Ship
 
-Commit + push; update memory charter; hand Terry the adjudication queue (7 open smoke findings from the v0.1 PRD run + anything U3/U4 leaves OPEN).
+Commit + push to `main`; update memory charter; hand Terry the adjudication queue (7 open smoke findings from the v0.1 PRD run + anything U3/U4 leaves OPEN).
+
+**Verify:** `quick_validate.py .` passes on the final tree; U1/U2 greps re-run clean; `git push` confirmed.
+**Guards:** one commit per phase-group is fine; never push with a failing validator.
