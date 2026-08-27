@@ -9,7 +9,7 @@ Named for *Calvin and Hobbes* — the six-year-old who asks the question everyon
 Calvin is a single [Agent Skill](https://agentskills.io) — one `SKILL.md`, no server, no dependencies. Symlink the repo into your host's skill directory (the directory name must stay `calvin`):
 
 ```sh
-git clone https://github.com/USER/calvin && cd calvin
+git clone https://github.com/clthuang/calvin && cd calvin
 ln -s "$PWD" ~/.claude/skills/calvin      # Claude Code
 ln -s "$PWD" ~/.agents/skills/calvin      # Codex CLI
 ln -s "$PWD" ~/.grok/skills/calvin        # Grok Build
