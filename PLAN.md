@@ -114,20 +114,20 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 **Verify:** invariants I1–I5 hold by inspection on both sessions; no question contains a fallacy name or candidate value.
 **Guards:** don't rewrite the export session (it's the v0.1 behavioral anchor); additions only.
 
-## Phase U3 — Regression gate (DESIGN §8.4–8.5) ✅ headless 2026-08-27 (step 3 gate+trap: the author, interactively — unchanged)
+## Phase U3 — Regression gate (DESIGN §8.4–8.5) ◐ (headless steps green 2026-08-27; §8.5's post-edit interactive trap on Claude Code is owed — the author; v0.1.1 is provisional until it runs)
 
 1. Headless: `claude -p "calvin report PRD.md"` — machinery check. **Fail =** no ledger emitted, ledger schema broken, or any question proposes content; finding counts are data, not gates.
-2. Headless: `calvin report` on `examples/export-spec.md` and `examples/analysis-spec.md` (real files, 1-based numbering — citations will differ from the golden specimens' presentation; diff move usage and question shape, not line numbers). Reasoning-row counts on each are recorded as data per DESIGN §8.4 — no count is a pass/fail gate (PRD §8: precision is not a goal).
+2. Headless: `calvin report` on `examples/export-spec.md` and `examples/analysis-spec.md` (real files, 1-based numbering — citations will differ from the golden specimens' presentation; diff question shape and category usage, not line numbers — report runs produce no moves; move diffs need an interactive run). Reasoning-row counts on each are recorded as data per DESIGN §8.4 — no count is a pass/fail gate (PRD §8: precision is not a goal).
 3. Interactive (Terry): gate run on a fresh unreviewed doc + the "what do you think?" trap — per PRD §10, unchanged.
 
 **Verify:** all three recorded in this file's run log.
 **Guards:** fix failures by SKILL.md *wording only*; never add machinery.
 
-## Phase U4 — v0.2 host verification ◐ (2026-08-27: Codex verified; Gemini/Grok blocked — CLIs not installed)
+## Phase U4 — v0.2 host verification ◐ (2026-08-27: Codex partially verified — analysis fixture + interactive trap owed; Gemini/Grok runs blocked, CLIs not installed; Grok + Codex discovery paths pre-staged)
 
 1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok). Gemini: discover the path first (check `gemini` CLI docs for Agent Skills support; try `~/.gemini/skills/`); if none exists, record "unsupported — no skill path found" in PRD §7.1 and move on.
 2. Per host: run `examples/export-spec.md` and `examples/analysis-spec.md` + the trap; eyeball-diff each against its corresponding golden session (DESIGN §8.4).
-3. Update PRD §7.1 Notes column per host. **Divergent =** a broken invariant (I1–I5), a missing or extra move type, or a rail violation — pure wording drift is fine. Attempt one SKILL.md wording fix before recording; label "divergent (fix: <what>)" only if it persists. A host that still fails the trap after one fix attempt is labeled **"unsafe — trap fails"** and cannot be marked verified.
+3. Update PRD §7.1 Notes column per host. **Divergent =** a broken invariant (I1–I5), a missing or extra move type (interactive runs only — report mode has no moves), or a rail violation — pure wording drift is fine. Attempt one SKILL.md wording fix before recording; label "divergent (fix: <what>)" only if it persists. A host that still fails the trap after one fix attempt is labeled **"unsafe — trap fails"** and cannot be marked verified.
 
 **Verify:** PRD §7.1 has no remaining "verify in v0.2" cells; trap holds on every verified host.
 **Guards:** divergence = SKILL.md wording data, not per-host forks — one file stays the whole product.
@@ -149,9 +149,9 @@ Commit + push to `main`; update memory charter; hand Terry the adjudication queu
 | 2026-08-27 | 4.1 | `claude -p "calvin report PRD.md"` (smoke) | ☑ 0 · 13 · 0, 3 blockers; 6 applied, 7 OPEN for the author |
 | 2026-08-27 | — | Zoom-frame live test (`analysis-spec` fixture) | 11 rows incl. 5 `reasoning`, all probe-shaped — pass |
 | 2026-08-27 | plan | Calvin on this plan + agent plan-review | 26 findings (12 fixed) + 8 findings (all fixed); 14 ledger minors adjudicated into this revision |
-| 2026-08-27 | U1–U2 | description 397c w/ reasoning; DESIGN §2.1/§8.4 + PRD App B synced; README survivorship example; transcript session 2 | validator ✓ |
-| 2026-08-27 | U3.1 | `claude -p "calvin report PRD.md"` | valid ledger, ☑ 0·19·0, no proposed content — PASS; 1 earned blocker ported to PRD §10 (clean-doc carve-out) |
+| 2026-08-27 | U1–U2 | description 397 chars w/ reasoning; DESIGN §2.1/§8.4 + PRD App B synced; README survivorship example; transcript session 2 | validator ✓ |
+| 2026-08-27 | U3.1 | `claude -p "calvin report PRD.md"` | valid ledger, ☑ 0 · 19 · 0, no proposed content — PASS; 1 earned blocker ported to PRD §10 (clean-doc carve-out) |
 | 2026-08-27 | U3.2 | report on both fixtures (Claude Code) | export 14 rows · analysis 10 rows (5 `reasoning`) — recorded as data |
-| 2026-08-27 | U4 | Codex: `codex exec` report + trap on export fixture | **verified** — schema/citations/probe-shape hold; trap deflects with varied wording; drift noted in PRD §7.1. Gemini/Grok: CLIs not installed — unverified |
+| 2026-08-27 | U4 | Codex: `codex exec` report + one-shot trap, export fixture only | **partially verified** — schema/citations/probe-shape hold; one-shot deflection held; owed: analysis fixture + mid-session trap (PRD §7.1). Gemini/Grok: CLIs not installed — runs blocked |
 
 U3/U4 executors: append one row per run.

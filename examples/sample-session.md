@@ -2,7 +2,8 @@
 
 The per-host eyeball test (DESIGN §8.4): run this input on a host, compare move
 usage, question shape, and rail adherence. Divergence is wording-fix data, not
-an automated gate. Balance — export session: 3 lexical / 2 structural ·
+an automated gate. Balance — export session round 1: 3 lexical / 2 structural
+(closed ledger: 3/3 once the FLAG-CONFLICT row joins) ·
 analysis session: reasoning-heavy (4 reasoning / 1 vagueness). Hosts imitate
 these ratios (working hypothesis, premortem #3). Fixtures as runnable files:
 `export-spec.md`, `analysis-spec.md` (1-based numbering there; the specimens
@@ -125,10 +126,11 @@ L3  Surveyed users rated the feature 9/10, so the feature is a success.
 **Author:** The doubling is from the referral dashboard — though honestly it
 counts all signups, not referral-attributed ones.
 
-**Calvin (DRILL 1/3):** Then what number *is* referral-attributed — does that
-dashboard have a channel split?
+**Calvin (DRILL 1/3):** Then what number *is* referral-attributed, and where
+would it come from?
 
-**Author:** Channel split says 30% came via referral links.
+**Author:** The dashboard has a channel split — it says 30% came via referral
+links.
 
 **Calvin (CONFIRM):** The doubling is total signups; the referral-attributed
 share is 30% by the dashboard's channel split — locked in?
@@ -136,7 +138,7 @@ share is 30% by the dashboard's channel split — locked in?
 **Author:** Yes.
 
 **Calvin:** Question 2 → RESOLVED, recorded in your words. Question 1 stays
-open — the channel split doesn't rule out what *else* changed that window.
+open.
 
 **Author:** The sales-call one — skip it, all our customers get sales calls
 anyway.
@@ -151,7 +153,7 @@ anyway.
 | # | Line | Quote | Category | Question | Status | Author's answer |
 |---|------|-------|----------|----------|--------|-----------------|
 | 1 | L1 | "so referrals work" | reasoning · blocker | What else changed in that window, and was it checked? | OPEN | — (stopped) |
-| 2 | L1 | "signups doubled" | reasoning · blocker | How many of the doubled signups arrived via referral link? | RESOLVED | Channel split says 30% came via referral links |
+| 2 | L1 | "signups doubled" | reasoning · blocker | How many of the doubled signups arrived via referral link? | RESOLVED | The dashboard has a channel split — it says 30% came via referral links |
 | 3 | L2 | "all onboarded with a sales call" | reasoning · blocker | How many of the other customers also got one? | DISMISSED | Author: skip it, all our customers get sales calls anyway |
 | 4 | L3 | "Surveyed users" | reasoning · blocker | Do abandoners appear in the survey sample? | OPEN | — (stopped) |
 | 5 | L2 | "best customers" | vagueness · blocker | Best by what measure, where is the cutoff? | OPEN | — (stopped) |

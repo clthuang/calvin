@@ -117,9 +117,9 @@ Why this is now sufficient: Anthropic's Agent Skills format became an open stand
 | Host | Discovery path | Notes |
 |------|---------------|-------|
 | Claude Code | `~/.claude/skills/calvin/` or `.claude/skills/` | Native |
-| Codex CLI | `~/.agents/skills/calvin/` or `.agents/skills/` | **Verified 2026-08-27** — report mode + trap both pass via `codex exec`; drift: smart quotes, `☐` tally glyph, more verbose sweeps, deflection labeled DRILL — data, no invariant broken |
-| Gemini CLI | Agent Skills standard | Unverified — CLI not installed on this machine (2026-08-27) |
-| Grok Build | `~/.grok/skills/` and `.agents/skills/`; auto-discovers Claude skill dirs | Unverified — CLI not installed on this machine (2026-08-27); per xAI docs it reads `.agents/skills/`, which is now populated |
+| Codex CLI | `~/.agents/skills/calvin/` or `.agents/skills/` | **Partially verified 2026-08-27** — export-fixture report + a one-shot trap pass via `codex exec`; still owed: the analysis fixture (reasoning lens) and a mid-session interactive trap. Drift: smart quotes, `☐` tally glyph, more verbose sweeps — data, no invariant broken |
+| Gemini CLI | Agent Skills standard (concrete path unconfirmed) | Unverified — CLI not installed; discovery attempted 2026-08-27: `~/.gemini/` exists with no `skills/` dir; Agent Skills adoption is documented (Phase 0 sources) but no skill path found yet |
+| Grok Build | `~/.grok/skills/` and `.agents/skills/`; auto-discovers Claude skill dirs | Unverified — CLI not installed (2026-08-27); discovery paths pre-staged: `~/.grok/skills/calvin` and `~/.agents/skills/calvin` symlinked (repo-local `.agents/` intentionally absent) |
 | Cursor / VS Code / others | Agent Skills standard paths | Per-tool docs |
 | Any plain chat LLM | Paste `SKILL.md` + the text | Universal fallback, zero install |
 
@@ -128,8 +128,10 @@ Why this is now sufficient: Anthropic's Agent Skills format became an open stand
 ```
 calvin/
   SKILL.md                    # the whole product: persona + taxonomy + weasel list + protocol + rails + ledger template
-  examples/sample-session.md  # golden transcript (the per-host eyeball test)
-  PRD.md / DESIGN.md / PLAN.md   # the paper trail
+  examples/sample-session.md  # golden transcripts, both sessions (the per-host eyeball test)
+  examples/export-spec.md     # runnable fixture — session 1 input
+  examples/analysis-spec.md   # runnable fixture — session 2 input (reasoning)
+  PRD.md / DESIGN.md / PLAN.md / HOOKS.md   # the paper trail
 ```
 
 - **`SKILL.md` structure per the standard:** YAML frontmatter (name + description — the always-in-context trigger; spec cap 1024 chars, ~150–400 conventional); body ≤5k tokens (recommended) holding the protocol, the Rail-1 deflection example (the trap must live in always-loaded context, not only in `examples/`), and the ~30-word weasel list inline — far below the size where on-demand reference loading pays for itself.

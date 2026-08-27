@@ -75,8 +75,10 @@ Rule: if a section busts its budget, cut prose, never cut an enum or a rail.
 ```
 calvin/
   SKILL.md                    # everything above
-  examples/sample-session.md  # golden transcript = per-host eyeball test (PRD App. B, unabridged)
-  PRD.md / DESIGN.md / PLAN.md
+  examples/sample-session.md  # golden transcripts, both sessions = per-host eyeball test
+  examples/export-spec.md     # runnable fixture — session 1 input
+  examples/analysis-spec.md   # runnable fixture — session 2 input (reasoning)
+  PRD.md / DESIGN.md / PLAN.md / HOOKS.md
 ```
 
 Install: `ln -s ~/projects/calvin ~/.claude/skills/calvin` (and per-host equivalents from PRD §7.1). No script.

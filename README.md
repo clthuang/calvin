@@ -40,9 +40,10 @@ One file, no server, no dependencies — a standard [Agent Skill](https://agents
 
 ```sh
 git clone https://github.com/clthuang/calvin && cd calvin
-ln -s "$PWD" ~/.claude/skills/calvin      # Claude Code
-ln -s "$PWD" ~/.agents/skills/calvin      # Codex CLI
-ln -s "$PWD" ~/.grok/skills/calvin        # Grok Build
+mkdir -p ~/.claude/skills ~/.agents/skills ~/.grok/skills
+ln -sfn "$PWD" ~/.claude/skills/calvin      # Claude Code
+ln -sfn "$PWD" ~/.agents/skills/calvin      # Codex CLI
+ln -sfn "$PWD" ~/.grok/skills/calvin        # Grok Build
 ```
 
 Other hosts that read the Agent Skills standard work the same way. Last resort: paste `SKILL.md` plus your text into any chat LLM.
