@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| **Status** | Draft, ready for v0.1 build |
+| **Status** | Living design — v0.1.1 shipped (provisional) |
 | **Owner** | Terry |
-| **Updated** | 2026-08-27 |
+| **Updated** | 2026-08-28 |
 | **Upstream** | `PRD.md` v3.1 (normative for *what/why*; survived 3 review rounds). This doc is normative for *how*. |
 | **Scope** | The v0.1 deliverable: one `SKILL.md` + golden transcript. Out of scope: v0.2 host verification, v0.3 CI/diff mode, v1.0 MCP (PRD §11). |
 
@@ -58,15 +58,15 @@ description: >
 
 | # | Section | Contents (normative source) | Budget |
 |---|---------|------------------------------|--------|
-| 0 | Install note | HTML comment at the END of the file — non-model-facing, so it no longer holds the primacy slot (one `ln -sfn` per host path, PRD §7.1) | 60 |
-| 1 | Identity & Prime Directive | Persona, never-answer rule, fallibility clause, ask-from-ignorance stance + universal challenge kit (PRD §2–3) | 450 |
-| 1b | Persistence clause | "Active every response — no drift into answering; off only on explicit stop" (pattern: ponytail SKILL.md `## Persistence`) | 100 |
-| 2 | Vocabulary | Zoom levels Z1–Z4 (sweep lenses) + six-category enum incl. `reasoning` + inline weasel list, severity enum, status/cause enums, citation grammar (PRD §4.1, §6) | 700 |
-| 3 | Protocol | The loop of §3 below, incl. constants: rounds ≤3, ≤5 q/round, why-budget 3, one aside/round (PRD §4.2, §5) | 800 |
-| 4 | Rails | Rails 1–5 verbatim-tight, **including the Rail-1 deflection exchange** — the trap must be in loaded context, marked as an example of the move, not a required script: vary the wording, keep the shape (PRD §4.3, §7.2) | 450 |
-| 5 | Ledger template | The §4 table skeleton + tally line + empty-ledger line | 250 |
-| 6 | Micro-example | 6–8 line condensed interrogation (full version lives in `examples/`) | 300 |
-| | **Total** | | **~2,960** — comfortable headroom under 5k |
+| 1 | Identity & Prime Directive | Persona, never-answer rule, fallibility clause, ask-from-ignorance stance + universal challenge kit (PRD §2) | 450 |
+| 2 | Persistence | Drift anchor + post-close stand-down (pattern: ponytail `## Persistence`) | 100 |
+| 3 | Rails | Rails 1–6 — hoisted directly after Persistence so the constraint region is contiguous with the Prime Directive; includes the Rail-1 deflection exchange (an example of the move, not a script) and Rail 2's enumeration gate (PRD §4.3) | 550 |
+| 4 | Vocabulary | Zoom levels Z1–Z4 (one line) + six-category enum incl. `reasoning` + inline weasel list + all four field enums (severity, status, cause, citation incl. `doc`) (PRD §4.1, §6) | 700 |
+| 5 | Protocol | Modes + constants (batch semantics, aside definition) + the 5-step loop with why-floor, wire format, verbatim-source and dismissal-paraphrase rules (PRD §4.2, §5) | 900 |
+| 6 | Ledger template | Table skeleton + tally + rendering notes + empty-ledger line | 250 |
+| 7 | One round, worked | Complete worked round-1: numbering statement, tagged batch, DISMISSED-by-paraphrase, tagged DRILL, CONFIRM, filled round-end ledger (all three statuses + `(unasked)`) | 450 |
+| 8 | Install note | HTML comment at the END of the file — non-model-facing | 60 |
+| | **Total** | | **~3,460** — comfortable headroom under 5k |
 
 Rule: if a section busts its budget, cut prose, never cut an enum or a rail.
 
@@ -132,6 +132,7 @@ Invariants (test these — §8):
 - **I3** No Calvin output exists outside {question, paraphrase-for-confirmation, ledger}.
 - **I4** RESOLVED answer cells contain the author's words, not Calvin's paraphrase.
 - **I5** No RESOLVED answer's substance (number, name, criterion) first appeared in Calvin's question — the leading-question check (Rail 2).
+- **I6** No question imports a frame absent from the text or the author's answers, demands an answer format, enumerates Calvin-invented items, or carries a verdict — the stance check (FLAG-CONFLICT's collision statement is exempt). DRILL also serves stance-sharpening: a naive opener's concrete-but-incomplete answer is drilled using the author's own words.
 
 ### 3.3 Bounds
 
@@ -141,13 +142,13 @@ Worst interactive case: 3 rounds × 5 questions = 15 primary questions; each fin
 
 One artifact, markdown, emitted into the conversation.
 
-**Citation grammar:** `L<n>` · `L<n>–<m>` (contiguous range) · `L<n>+<m>` (non-contiguous pair). Line numbers refer to Calvin's numbering from step 1, which is stated at the top of the first round.
+**Citation grammar:** `L<n>` · `L<n>–L<m>` (contiguous range) · `L<n>+L<m>` (non-contiguous) · `doc` (whole-document findings — name the absence). Line numbers refer to Calvin's numbering from step 1, which is stated at the top of the first round.
 
 **Vocabulary (closed enums):**
 
 | Field | Values |
 |-------|--------|
-| Category | `ambiguity` `vagueness` `inconsistency` `assumption` `completeness` `reasoning` |
+| Category | `ambiguity` `vagueness` `inconsistency` `assumption` `completeness` `reasoning` — causal claims route to `reasoning` |
 | Severity | `blocker` (implementer would guess) · `minor` (friction) |
 | Status | `RESOLVED` · `DISMISSED` · `OPEN` |
 | OPEN cause (answer cell) | `(unasked)` `(budget)` `(stopped)` `(report)` |
@@ -189,14 +190,14 @@ Defined once in SKILL.md §3, referenced nowhere else: `ROUNDS_MAX = 3` (human-e
 
 1. **Dogfood (v0.1 gate, PRD §10):** smoke-run `calvin PRD.md` (hard fixture — an empty ledger is legal), then gate on `calvin <fresh unreviewed doc>`. Pass = the gate run yields ≥1 question the owner resolves with a real edit; all-DISMISSED or zero questions = fail.
 2. **Trap test (every host, staged v0.1→v0.2):** mid-session, author asks "what do you think it should be?" Pass = Rail-1 deflection; any proposed content = fail.
-3. **Invariant checks on the dogfood transcript:** I1–I5 by inspection (they are visible properties of the ledger + transcript; I5 = no RESOLVED substance originated in a question).
+3. **Invariant checks on the dogfood transcript:** I1–I6 by inspection (visible properties of the ledger + transcript; I5 = no RESOLVED substance originated in a question; I6 = the stance check).
 4. **Golden transcript diff:** run the sample inputs (both sessions — `examples/export-spec.md`, `examples/analysis-spec.md`) per host; eyeball divergence in move usage, question quality, rail adherence. Divergence is data for wording fixes, not an automated gate.
 5. **Regression rule:** any SKILL.md edit → re-run 1 and 2 on Claude Code before calling it done.
 
 ## 9. Build plan (v0.1, ~half a day)
 
 1. Write `SKILL.md` §§0–6 to the budgets in §2.2. — 2h
-2. Write `examples/sample-session.md` (unabridged PRD App. B session incl. trap exchange). — 30m
+2. Write `examples/sample-session.md` (both golden sessions incl. trap exchange). — 30m
 3. `ln -s` into `~/.claude/skills/`. — 1m
 4. Run dogfood + trap + invariants; fix wording; re-run. — 1–2h
 5. Log resulting PRD edits (the dogfood output *is* PRD feedback). — 15m

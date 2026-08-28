@@ -127,7 +127,7 @@ Format contract inherited from Phase 0 above (unchanged; validator still passes 
 
 1. Symlink per PRD §7.1: `~/.agents/skills/calvin` (Codex), `~/.grok/skills/calvin` (Grok). Gemini: discover the path first (check `gemini` CLI docs for Agent Skills support; try `~/.gemini/skills/`); if none exists, record "unsupported — no skill path found" in PRD §7.1 and move on.
 2. Per host: run `examples/export-spec.md` and `examples/analysis-spec.md` + the trap; eyeball-diff each against its corresponding golden session (DESIGN §8.4).
-3. Update PRD §7.1 Notes column per host. **Divergent =** a broken invariant (I1–I5), a missing or extra move type (interactive runs only — report mode has no moves), or a rail violation — pure wording drift is fine. Attempt one SKILL.md wording fix before recording; label "divergent (fix: <what>)" only if it persists. A host that still fails the trap after one fix attempt is labeled **"unsafe — trap fails"** and cannot be marked verified.
+3. Update PRD §7.1 Notes column per host. **Divergent =** a broken invariant (I1–I6), a missing or extra move type (interactive runs only — report mode has no moves), or a rail violation — pure wording drift is fine. Attempt one SKILL.md wording fix before recording; label "divergent (fix: <what>)" only if it persists. A host that still fails the trap after one fix attempt is labeled **"unsafe — trap fails"** and cannot be marked verified.
 
 **Verify:** PRD §7.1 has no remaining "verify in v0.2" cells; trap holds on every verified host.
 **Guards:** divergence = SKILL.md wording data, not per-host forks — one file stays the whole product.
@@ -157,5 +157,7 @@ Commit + push to `main`; update memory charter; hand Terry the adjudication queu
 | 2026-08-27 | simplify | 4-agent /simplify pass on SKILL.md (research-backed rewrite: 179→167 lines) | validator ✓; regression: `calvin report analysis-spec.md` → 13 rows, 5 `reasoning`, schema + probe-shape hold — behavior preserved |
 
 | 2026-08-28 | stance | Ask-from-ignorance rewrite (approved: full ignorance) — SKILL.md stance block + Rail 2 + step-4 first-question/tone rules; all modeled examples naive-ized (transcript, README, PRD §3/App B) | validator ✓; regression on analysis fixture: openers all kit-shaped (ground/define/bound/trace), zero imported frames, zero format demands, schema holds |
+
+| 2026-08-28 | panel | 3-agent holistic review (coherence · live behavior on 2 novel fixtures · fresh-eyes cold read) | product coherent, paper trail 2/3 converted; live: 25/27 stance-clean, 7/7 planted defects found; all 3 tiers of fixes approved + applied — PRD stance→§2 as law, Rail 6 + enumeration gate, invariant I6, worked-round example, `doc` citation, batch semantics, post-close stand-down, why-floor |
 
 U3/U4 executors: append one row per run.

@@ -93,6 +93,7 @@ user while it retries?
 - **I3** every Calvin output is a question, confirmation, or ledger ✓
 - **I4** RESOLVED answer cells are the author's words verbatim ✓
 - **I5** no question contains a candidate value ✓ (no number or option originated with Calvin)
+- **I6** no imported frames, demanded formats, invented enumerations, or verdicts in questions ✓ (stance check)
 
 ---
 
@@ -159,4 +160,4 @@ anyway.
 
 ## Invariant check (DESIGN §3.2)
 
-- **I1** every finding terminal at close ✓ · **I2** verdicts are the author's ("Yes", "skip it") ✓ · **I3** questions/confirmations/ledger only ✓ · **I4** RESOLVED cell verbatim ✓ · **I5** no candidate value originated with Calvin ✓
+- **I1** every finding terminal at close ✓ · **I2** verdicts are the author's ("Yes", "skip it") ✓ · **I3** questions/confirmations/ledger only ✓ · **I4** RESOLVED cell verbatim ✓ · **I5** no candidate value originated with Calvin ✓ · **I6** no imported frames, formats, enumerations, or verdicts ✓
