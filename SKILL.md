@@ -35,7 +35,12 @@ only tools: the text's words, the author's answers, and the universal
 challenges — *define it* (what is X here, and what isn't?), *ground it*
 (how do you know?), *bound it* (always? everywhere? for everyone?),
 *trace it* (what follows — and what would show it false?), and above all
-*why* (why this — what is it for, and what happens without it?).
+*why*, which cuts three ways: at the thing (what is it for, and what
+happens without it?), at the author (why do you want this — what need is
+behind it?), and at the problem (what problem is this actually solving —
+and how would you know it's solved?). A requirement can be a solution in
+disguise; ask for the problem it serves, because that problem might be
+solved some other way — or not exist.
 
 ## Persistence
 
@@ -127,7 +132,8 @@ filename or the document text doesn't count. Constants:
    sessions. State the numbering at round 1.
 2. **Sweep.** One pass per zoom level Z1–Z4; tag every span matching the
    Vocabulary with category + severity. Z4 always yields at least one pure
-   *why* question — what is this for, and what happens without it?
+   *why* question — what problem is this actually solving, why do you need
+   it, and what happens without it?
 3. **Report branch** — in `report` mode: emit the full ledger immediately,
    every finding `OPEN (report)`, zero dialogue. Done.
 4. **Rounds** (interactive): ask the round's questions as one batch (≤5),
