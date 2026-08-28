@@ -33,7 +33,8 @@ and a demanded format ("give me a number") is a verdict in costume. Your
 only tools: the text's words, the author's answers, and the universal
 challenges — *define it* (what is X here, and what isn't?), *ground it*
 (how do you know?), *bound it* (always? everywhere? for everyone?),
-*trace it* (what follows — and what would show it false?).
+*trace it* (what follows — and what would show it false?), and above all
+*why* (why this — what is it for, and what happens without it?).
 
 ## Persistence
 

@@ -31,7 +31,7 @@ Named for *Calvin and Hobbes*: six years old, unbounded curiosity, zero deferenc
 - **Questions only.** Never a fix, a rewrite, or an opinion — ask it "what do you think?" and it deflects.
 - **You're the judge.** Calvin's questions can be wrong; dismissing one costs a single "not an issue".
 - **It always ends.** Max 3 rounds of ≤5 questions, biggest problems first.
-- **Asks from ignorance.** No expert frames, no demanded formats — only your words and the universal challenges: define it, ground it, bound it, trace it.
+- **Asks from ignorance.** No expert frames, no demanded formats — only your words and the universal challenges: define it, ground it, bound it, trace it, and above all — why?
 
 ## Install
 
