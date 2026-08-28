@@ -156,4 +156,6 @@ Commit + push to `main`; update memory charter; hand Terry the adjudication queu
 
 | 2026-08-27 | simplify | 4-agent /simplify pass on SKILL.md (research-backed rewrite: 179→167 lines) | validator ✓; regression: `calvin report analysis-spec.md` → 13 rows, 5 `reasoning`, schema + probe-shape hold — behavior preserved |
 
+| 2026-08-28 | stance | Ask-from-ignorance rewrite (approved: full ignorance) — SKILL.md stance block + Rail 2 + step-4 first-question/tone rules; all modeled examples naive-ized (transcript, README, PRD §3/App B) | validator ✓; regression on analysis fixture: openers all kit-shaped (ground/define/bound/trace), zero imported frames, zero format demands, schema holds |
+
 U3/U4 executors: append one row per run.

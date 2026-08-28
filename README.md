@@ -5,12 +5,11 @@
 ```
 L8  The export should be fast and include everything relevant.
 
-Calvin: "fast" — number, please. What's the biggest export that
-        must still finish, and in how many seconds?
-Calvin: "everything relevant" — relevant according to whom?
-        List it, or point at the list. ("Everything relevant" is
-        what my mom says to pack for camp. It's how you end up
-        with no toothbrush.)
+Calvin: What does "fast" mean here — how would a reader tell
+        a fast export from a slow one?
+Calvin: "everything relevant" — relevant by what standard, and
+        who decides? ("Everything relevant" is what my mom says
+        to pack for camp. It's how you end up with no toothbrush.)
 ```
 
 It hunts sloppy wording and shaky reasoning alike:
@@ -19,9 +18,8 @@ It hunts sloppy wording and shaky reasoning alike:
 L2  Our best customers all onboarded with a sales call,
     so sales calls create loyalty.
 
-Calvin: "all onboarded with a sales call" — how many of the
-        OTHER customers — the churned and the middling — also
-        onboarded with a sales call?
+Calvin: That counts only your best customers — did the
+        customers who AREN'T your best get sales calls too?
 ```
 
 You answer, Calvin locks it in, and you get a ledger of your own words — ready to paste back into the doc. Vague specs make AI agents guess; Calvin makes *you* decide before they do.
@@ -33,6 +31,7 @@ Named for *Calvin and Hobbes*: six years old, unbounded curiosity, zero deferenc
 - **Questions only.** Never a fix, a rewrite, or an opinion — ask it "what do you think?" and it deflects.
 - **You're the judge.** Calvin's questions can be wrong; dismissing one costs a single "not an issue".
 - **It always ends.** Max 3 rounds of ≤5 questions, biggest problems first.
+- **Asks from ignorance.** No expert frames, no demanded formats — only your words and the universal challenges: define it, ground it, bound it, trace it.
 
 ## Install
 

@@ -59,14 +59,14 @@ description: >
 | # | Section | Contents (normative source) | Budget |
 |---|---------|------------------------------|--------|
 | 0 | Install note | HTML comment at the END of the file — non-model-facing, so it no longer holds the primacy slot (one `ln -sfn` per host path, PRD §7.1) | 60 |
-| 1 | Identity & Prime Directive | Persona, never-answer rule, fallibility clause (PRD §2–3) | 350 |
+| 1 | Identity & Prime Directive | Persona, never-answer rule, fallibility clause, ask-from-ignorance stance + universal challenge kit (PRD §2–3) | 450 |
 | 1b | Persistence clause | "Active every response — no drift into answering; off only on explicit stop" (pattern: ponytail SKILL.md `## Persistence`) | 100 |
 | 2 | Vocabulary | Zoom levels Z1–Z4 (sweep lenses) + six-category enum incl. `reasoning` + inline weasel list, severity enum, status/cause enums, citation grammar (PRD §4.1, §6) | 700 |
 | 3 | Protocol | The loop of §3 below, incl. constants: rounds ≤3, ≤5 q/round, why-budget 3, one aside/round (PRD §4.2, §5) | 800 |
 | 4 | Rails | Rails 1–5 verbatim-tight, **including the Rail-1 deflection exchange** — the trap must be in loaded context, marked as an example of the move, not a required script: vary the wording, keep the shape (PRD §4.3, §7.2) | 450 |
 | 5 | Ledger template | The §4 table skeleton + tally line + empty-ledger line | 250 |
 | 6 | Micro-example | 6–8 line condensed interrogation (full version lives in `examples/`) | 300 |
-| | **Total** | | **~2,860** — comfortable headroom under 5k |
+| | **Total** | | **~2,960** — comfortable headroom under 5k |
 
 Rule: if a section busts its budget, cut prose, never cut an enum or a rail.
 

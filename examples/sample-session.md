@@ -21,24 +21,22 @@ L9  If the export fails, the system retries.
 
 **Calvin:** Numbering as shown, L7–L9. Five questions, blockers first.
 
-1. **[ambiguity · blocker · L7]** "their data" — which data? Settings?
-   Activity history? Other people's comments on their posts? Draw me the
-   boundary.
-2. **[vagueness · blocker · L8]** "fast" — number, please. What's the biggest
-   export that must still finish, and in how many seconds?
-3. **[vagueness · blocker · L8]** "everything relevant" — relevant according
-   to whom? List it, or point at the list. ("Everything relevant" is what my
-   mom says to pack for camp. It's how you end up with no toothbrush.)
+1. **[ambiguity · blocker · L7]** "their data" — which data counts, and
+   where does it end?
+2. **[vagueness · blocker · L8]** What does "fast" mean here — how would a
+   reader tell a fast export from a slow one?
+3. **[vagueness · blocker · L8]** "everything relevant" — relevant by what
+   standard, and who decides? ("Everything relevant" is what my mom says to
+   pack for camp. It's how you end up with no toothbrush.)
 4. **[inconsistency · blocker · L7+L9]** L7 promises exports "at any time";
-   L9 quietly retries failures. While retries burn, what does the user see —
-   available, degraded, or a small lie?
+   L9 retries failures. While a retry runs, is L7's promise still being
+   kept?
 5. **[completeness · minor · L9]** After the last retry fails: who finds out,
    and how?
 
 **Author:** Fast means under a minute.
 
-**Calvin (DRILL 1/3):** Under a minute for the median user, or the 10 GB
-hoarder? Name the biggest file that must still make the cut.
+**Calvin (DRILL 1/3):** Under a minute always — for every export there is?
 
 **Author:** Up to 2 GB in 60 s. Bigger goes async with an email.
 
@@ -80,10 +78,10 @@ user while it retries?
 ## Calvin's Ledger — export-spec.md (close)
 | # | Line | Quote | Category | Question | Status | Author's answer |
 |---|------|-------|----------|----------|--------|-----------------|
-| 1 | L7 | "their data" | ambiguity · blocker | Which data — settings, history, others' comments? Draw the boundary. | OPEN | — (stopped) |
-| 2 | L8 | "fast" | vagueness · blocker | Biggest export that must finish, in how many seconds? | RESOLVED | Up to 2 GB in 60 s. Bigger goes async with an email. |
-| 3 | L8 | "everything relevant" | vagueness · blocker | Relevant according to whom? List it, or point at the list. | OPEN | — (stopped) |
-| 4 | L7+L9 | "at any time" / "retries" | inconsistency · blocker | While retries burn, what does the user see? | DISMISSED | Author: skip it, out of scope for v1 |
+| 1 | L7 | "their data" | ambiguity · blocker | Which data counts, and where does it end? | OPEN | — (stopped) |
+| 2 | L8 | "fast" | vagueness · blocker | How would a reader tell a fast export from a slow one? | RESOLVED | Up to 2 GB in 60 s. Bigger goes async with an email. |
+| 3 | L8 | "everything relevant" | vagueness · blocker | Relevant by what standard, and who decides? | OPEN | — (stopped) |
+| 4 | L7+L9 | "at any time" / "retries" | inconsistency · blocker | While a retry runs, is L7's promise kept? | DISMISSED | Author: skip it, out of scope for v1 |
 | 5 | L9 | "the system retries" | completeness · minor | After the last retry fails: who finds out, and how? | OPEN | — (stopped) |
 | 6 | L7+L8 | "at any time" / async answer | inconsistency · blocker | L7 as written, or the async answer — which is true? | RESOLVED | "Any time" means you can start an export any time, not that it finishes instantly. |
 ☑ 2 resolved · 3 open · 1 dismissed
@@ -112,14 +110,14 @@ L3  Surveyed users rated the feature 9/10, so the feature is a success.
 
 **Calvin:** Numbering as shown, L1–L3. Five questions, blockers first.
 
-1. **[reasoning · blocker · L1]** "so referrals work" — what else changed in
-   that window (campaigns, pricing, press, season), and were any checked?
+1. **[reasoning · blocker · L1]** "so referrals work" — how do you know the
+   referrals did it? What else could explain a doubling, and was that
+   checked?
 2. **[reasoning · blocker · L1]** Of the doubled signups, how many actually
    arrived through a referral link?
-3. **[reasoning · blocker · L2]** "all onboarded with a sales call" — how many
-   of the *other* customers, the churned and the middling, also got one?
-4. **[reasoning · blocker · L3]** Who answered the survey — do users who tried
-   the feature and abandoned it appear in the sample?
+3. **[reasoning · blocker · L2]** L2 counts only your best customers — did
+   the customers who *aren't* your best get sales calls too?
+4. **[reasoning · blocker · L3]** Who answered the survey — and who didn't?
 5. **[vagueness · blocker · L2]** "best customers" — best by what measure, and
    where is the cutoff?
 
@@ -152,10 +150,10 @@ anyway.
 ## Calvin's Ledger — analysis-spec.md (close)
 | # | Line | Quote | Category | Question | Status | Author's answer |
 |---|------|-------|----------|----------|--------|-----------------|
-| 1 | L1 | "so referrals work" | reasoning · blocker | What else changed in that window, and was it checked? | OPEN | — (stopped) |
+| 1 | L1 | "so referrals work" | reasoning · blocker | What else could explain the doubling, and was it checked? | OPEN | — (stopped) |
 | 2 | L1 | "signups doubled" | reasoning · blocker | How many of the doubled signups arrived via referral link? | RESOLVED | The dashboard has a channel split — it says 30% came via referral links |
-| 3 | L2 | "all onboarded with a sales call" | reasoning · blocker | How many of the other customers also got one? | DISMISSED | Author: skip it, all our customers get sales calls anyway |
-| 4 | L3 | "Surveyed users" | reasoning · blocker | Do abandoners appear in the survey sample? | OPEN | — (stopped) |
+| 3 | L2 | "all onboarded with a sales call" | reasoning · blocker | Did the customers who aren't your best get sales calls too? | DISMISSED | Author: skip it, all our customers get sales calls anyway |
+| 4 | L3 | "Surveyed users" | reasoning · blocker | Who answered — and who didn't? | OPEN | — (stopped) |
 | 5 | L2 | "best customers" | vagueness · blocker | Best by what measure, where is the cutoff? | OPEN | — (stopped) |
 ☑ 1 resolved · 3 open · 1 dismissed
 
