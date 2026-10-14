@@ -30,25 +30,20 @@ Covers entries 1, 2, 3 in one block; zero machinery; the premortem's single high
   calvin the plan document. Skip only if the doc already has a calvin ledger.
 ```
 
-### H2 — PostToolUse spec-file reminder (`inject`, one ~15-line script) — DO SECOND
-Deterministic version of H1: fires at the exact moment a spec-shaped file is written, once per file per session. Reuses the existing pattern (`~/.claude/hooks/*.sh`, registered in settings.json — same shape as `worktree-remind.sh`).
+### H2 — PostToolUse spec-file reminder (`inject`, one ~25-line script) — DO SECOND
+Deterministic version of H1: fires at the exact moment a spec-shaped file is written, once per file per session. Plan files also get pointed at `/claude-mem:do`, the execution half of entry 2's make-plan → do seam. Reuses the existing pattern: a script in `~/.claude/hooks/` registered in settings.json, the same shape as `worktree-remind.sh`.
 
-```bash
-#!/bin/bash
-# calvin-remind.sh — PostToolUse(Edit|Write): one nudge per spec-like file per session
-input=$(cat)
-path=$(printf '%s' "$input" | jq -r '.tool_input.file_path // empty')
-sid=$(printf '%s' "$input" | jq -r '.session_id // "s"')
-case "$(basename "$path" | tr '[:upper:]' '[:lower:]')" in
-  *prd*.md|*spec*.md|*plan*.md|*design*.md|*rfc*.md|shape.md|*brief*.md) ;;
-  *) exit 0 ;;
-esac
-mark="${TMPDIR:-/tmp}/calvin-remind-$(printf '%s' "$sid$path" | shasum | cut -c1-12)"
-[ -e "$mark" ] && exit 0
-touch "$mark"
-echo "Spec-shaped file written: $path — run calvin on it before anything implements from it (Calvin questions, the author adjudicates)."
-```
-Register: `PostToolUse`, matcher `Edit|Write`. Exclusion note: skip paths inside `~/projects/calvin/` itself to avoid self-nagging while building Calvin.
+- **Source:** [`hooks/calvin-remind.sh`](hooks/calvin-remind.sh). Tests: [`hooks/test-calvin-remind.sh`](hooks/test-calvin-remind.sh).
+- **Install:** `ln -sfn ~/projects/calvin/hooks/calvin-remind.sh ~/.claude/hooks/calvin-remind.sh`. Use a link, not a copy, so fixes here reach the live hook.
+- **Register:** `PostToolUse`, matcher `Edit|Write`.
+- **Self-skip:** paths inside the repo that `~/.claude/skills/calvin` links to are ignored, so it doesn't nag while Calvin is being built.
+
+**Gotcha (found 2026-10-14):** for `PostToolUse`, Claude Code sends a hook's plain stdout to its debug log only. Only `UserPromptSubmit`, `UserPromptExpansion`, `SessionStart` and `PostModelSwitch` add plain stdout to Claude's context. The original script `echo`ed its reminder, so for seven weeks no reminder reached Claude. The script now prints JSON `hookSpecificOutput.additionalContext`, which Claude Code places next to the tool result.
+
+**Other fixes in that change:**
+- **Whole-word keywords:** `*plan*.md` had matched `explanation.md` and `airplane.md`.
+- **Markers made with `mkdir`:** atomic, and a planted symlink isn't followed.
+- **Silent on every error:** no jq diagnostics and no non-zero exit.
 
 ### H3 — `~/.codex/AGENTS.md` section (`remember`, mirrors H1) — WITH v0.2
 The file already has Working Agreements + Reviews sections; add a `## Specs` section with H1's two bullets. Pairs with the v0.2 install symlink (`~/.agents/skills/calvin`). No point before Calvin is verified on Codex.
@@ -75,7 +70,7 @@ Two layers, different portability:
 | When | Action |
 |------|--------|
 | ✅ landed 2026-08-27 | H1 — `# Clarity (calvin)` block live in `~/.claude/CLAUDE.md` |
-| ✅ landed 2026-08-27 | H2 — `calvin-remind.sh` live: PostToolUse(Edit\|Write) in settings.json, pipe-tested + live-fire verified |
+| ✅ landed 2026-08-27, ⚠ silent until 2026-10-14 | H2 — `calvin-remind.sh` registered on PostToolUse(Edit\|Write). The original tests passed without proving delivery: the pipe test checked stdout, and the live fire checked that the hook ran. In fact the plain-stdout reminder never reached Claude. Fixed 2026-10-14 by switching to `additionalContext`, verified by a live Write that delivered the reminder to Claude. |
 | With v0.2 (Codex verified) | H3 |
 | Next pd release | H4 |
 | v0.3 (report mode in CI) | Revisit gates: git pre-commit `calvin report` on spec paths, exit code on blocker-count |

@@ -56,4 +56,4 @@ calvin report spec.md    # one-shot — every question emitted, no dialogue
 
 ## More
 
-[`SKILL.md`](SKILL.md) is the whole product. [`examples/sample-session.md`](examples/sample-session.md) shows a full session; [`PRD.md`](PRD.md), [`DESIGN.md`](DESIGN.md), [`PLAN.md`](PLAN.md), and [`HOOKS.md`](HOOKS.md) are the paper trail.
+[`SKILL.md`](SKILL.md) is the whole product. [`examples/sample-session.md`](examples/sample-session.md) shows a full session; [`PRD.md`](PRD.md), [`DESIGN.md`](DESIGN.md), [`PLAN.md`](PLAN.md), and [`HOOKS.md`](HOOKS.md) are the paper trail. [`hooks/`](hooks/) holds the optional Claude Code reminder hook (see HOOKS.md H2).
