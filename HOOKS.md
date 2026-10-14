@@ -30,20 +30,20 @@ Covers entries 1, 2, 3 in one block; zero machinery; the premortem's single high
   calvin the plan document. Skip only if the doc already has a calvin ledger.
 ```
 
-### H2 — PostToolUse spec-file reminder (`inject`, one ~25-line script) — DO SECOND
+### H2 — PostToolUse spec-file reminder (`inject`, one ~35-line script) — DO SECOND
 Deterministic version of H1: fires at the exact moment a spec-shaped file is written, once per file per session. Plan files also get pointed at `/claude-mem:do`, the execution half of entry 2's make-plan → do seam. Reuses the existing pattern: a script in `~/.claude/hooks/` registered in settings.json, the same shape as `worktree-remind.sh`.
 
 - **Source:** [`hooks/calvin-remind.sh`](hooks/calvin-remind.sh). Tests: [`hooks/test-calvin-remind.sh`](hooks/test-calvin-remind.sh).
 - **Install:** `ln -sfn ~/projects/calvin/hooks/calvin-remind.sh ~/.claude/hooks/calvin-remind.sh`. Use a link, not a copy, so fixes here reach the live hook.
 - **Register:** `PostToolUse`, matcher `Edit|Write`.
-- **Self-skip:** paths inside the repo that `~/.claude/skills/calvin` links to are ignored, so it doesn't nag while Calvin is being built.
+- **Self-skip:** paths inside the repo that `~/.claude/skills/calvin` links to are ignored, so it doesn't nag while Calvin is being built. Directory symlinks are resolved first, so a write through `~/.claude/skills/calvin/` itself is skipped too.
 
 **Gotcha (found 2026-10-14):** for `PostToolUse`, Claude Code sends a hook's plain stdout to its debug log only. Only `UserPromptSubmit`, `UserPromptExpansion`, `SessionStart` and `PostModelSwitch` add plain stdout to Claude's context. The original script `echo`ed its reminder, so for seven weeks no reminder reached Claude. The script now prints JSON `hookSpecificOutput.additionalContext`, which Claude Code places next to the tool result.
 
 **Other fixes in that change:**
-- **Whole-word keywords:** `*plan*.md` had matched `explanation.md` and `airplane.md`.
-- **Markers made with `mkdir`:** atomic, and a planted symlink isn't followed.
-- **Silent on every error:** no jq diagnostics and no non-zero exit.
+- **Whole-word keywords:** `*plan*.md` had matched `explanation.md` and `airplane.md`. Plurals match too (`plans.md`, `specifications.md`).
+- **Markers made with `mkdir`:** atomic, and a planted symlink isn't followed. The marker is keyed on the symlink-resolved path, so `/tmp/plan.md` and `/private/tmp/plan.md` count as one file.
+- **Silent on every error:** stderr is discarded for the whole script and every exit is 0. A failed hash, a non-string `file_path`, or a name ending in a newline skips the reminder.
 
 ### H3 — `~/.codex/AGENTS.md` section (`remember`, mirrors H1) — WITH v0.2
 The file already has Working Agreements + Reviews sections; add a `## Specs` section with H1's two bullets. Pairs with the v0.2 install symlink (`~/.agents/skills/calvin`). No point before Calvin is verified on Codex.
