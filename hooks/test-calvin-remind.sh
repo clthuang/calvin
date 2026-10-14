@@ -16,6 +16,8 @@ o=$(calvin s1 /x/implementation-plan.md "$S" 2>"$Q/stderr"); r=$?
 check "plan → exactly one PostToolUse additionalContext naming /claude-mem:do, exit 0, no stderr" \
   '[ $r = 0 ] && [ ! -s "$Q/stderr" ] && printf "%s" "$o" | jq -se "length == 1 and .[0].hookSpecificOutput.hookEventName == \"PostToolUse\" and (.[0].hookSpecificOutput.additionalContext | contains(\"/claude-mem:do\"))" >/dev/null'
 check "same file again in session → silent" '[ -z "$(calvin s1 /x/implementation-plan.md "$S")" ]'
+check "same file, new session → fires again" '[ -n "$(calvin s1b /x/implementation-plan.md "$S")" ]'
+check "same session, other file → fires again" '[ -n "$(calvin s1 /x/other-plan.md "$S")" ]'
 for f in plan.md claude-code-integration-plan.md PLAN.MD plans.md my_plan_v2.md; do
   check "$f → plan message" '[ -n "$(calvin s2 "/x/$f" "$(fresh)" | grep claude-mem:do)" ]'
 done
